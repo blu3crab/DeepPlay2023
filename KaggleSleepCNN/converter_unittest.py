@@ -1,7 +1,7 @@
 from converter import *
 
 # unit test converters
-def converter_unit_test():
+def converter_unittest():
     print(hex_to_int('038441c925bb'))
     print(int_to_hex(hex_to_int('038441c925bb')))
 
