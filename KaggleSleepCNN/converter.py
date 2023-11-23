@@ -35,6 +35,28 @@ def remove_rows_with_nan(row):
     else:
         return row
 
+def convert_to_seconds_after_midnight(date_string):
+    """Converts a date string to seconds past midnight.
+
+    Args:
+    date_string: A string in the format YYYY-MM-DDTHH:MM:SS-TZ.
+
+    Returns:
+    An integer representing the number of seconds since midnight.
+    """
+    # print(f"date_string->,{date_string}")
+    if len(date_string) == 0:
+        return None  # NAN_TIME
+
+    # 2018-08-14T22:26:00-0400
+    date_time = datetime.datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S-%f")
+    #print(date_time)
+    date_midnight = date_time.replace(hour=0, minute=0, second=0, microsecond=0)
+    #print(date_midnight)
+
+    time_in_seconds = np.int32((date_time - date_midnight).total_seconds())
+    # print(time_in_seconds)
+    return time_in_seconds
 
 def convert_to_seconds(date_string, ref_year=1970, ref_month=1, ref_day=1):
     """Converts a date string to seconds past 1970-01-01 or ref_year,ref_month,ref_day.
@@ -54,7 +76,6 @@ def convert_to_seconds(date_string, ref_year=1970, ref_month=1, ref_day=1):
     time_in_seconds = np.int32((date_time - datetime.datetime(ref_year, ref_month, ref_day)).total_seconds())
     # print(time_in_minutes)
     return time_in_seconds
-
 
 def convert_to_minutes(date_string, ref_year=1970, ref_month=1, ref_day=1):
     """Converts a date string to seconds past 1970-01-01 or ref_year,ref_month,ref_day.
