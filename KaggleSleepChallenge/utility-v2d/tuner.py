@@ -18,10 +18,9 @@ tuner = SimpleNamespace(
     WAKEUP_EVENT_LABEL = 'wakeup',
 
     # event enumeration
-    NAN_EVENT = -1,
     ONSET_EVENT = 0,
     SLEEP_EVENT = 1,
     WAKEUP_EVENT = 2,
-    AWAKE_EVENT = 3
+    WAKE_EVENT = 3
 )
 ####################################################################
